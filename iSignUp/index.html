@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iLiam Signup</title>
+  <style>
+    body {
+      font-family: Comic Sans MS, cursive;
+      background: #ff66cc;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+    .form-box {
+      background: #222;
+      padding: 20px;
+      border-radius: 15px;
+      display: inline-block;
+    }
+    input {
+      margin: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+    button {
+      background: #ffcc00;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sign Up for iLiam!</h1>
+  <div class="form-box">
+    <input type="text" id="username" placeholder="Username"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+    <button onclick="signUp()">Sign Up</button>
+  </div>
+
+  <p id="message"></p>
+
+  <script>
+    function signUp() {
+      let username = document.getElementById("username").value;
+      let password = document.getElementById("password").value;
+
+      if(username && password) {
+        document.getElementById("message").innerText =
+          "🎉 Thanks for signing up, " + username + "!";
+      } else {
+        document.getElementById("message").innerText =
+          "⚠️ Please enter both a username and password!";
+      }
+    }
+  </script>
+</body>
+</html>
