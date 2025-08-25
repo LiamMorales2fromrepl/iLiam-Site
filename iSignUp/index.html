@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iLiam Signup</title>
+  <title>iCarly Style Signup</title>
   <style>
     body {
       font-family: Comic Sans MS, cursive;
@@ -32,31 +32,52 @@
       cursor: pointer;
       font-weight: bold;
     }
+    #welcome {
+      font-size: 1.5em;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-  <h1>Sign Up for iLiam!</h1>
-  <div class="form-box">
+  <h1>Sign Up for iCarly World!</h1>
+  
+  <div id="signupBox" class="form-box">
     <input type="text" id="username" placeholder="Username"><br>
     <input type="password" id="password" placeholder="Password"><br>
     <button onclick="signUp()">Sign Up</button>
   </div>
 
-  <p id="message"></p>
+  <p id="welcome"></p>
 
   <script>
+    // Save cookie
+    function setCookie(name, value, days) {
+      let d = new Date();
+      d.setTime(d.getTime() + (days*24*60*60*1000));
+      let expires = "expires=" + d.toUTCString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+
+    // Get cookie
+    function getCookie(name) {
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      name = name + "=";
+      for(let i=0; i<ca.length; i++) {
+        let c = ca[i].trim();
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+      }
+      return "";
+    }
+
     function signUp() {
       let username = document.getElementById("username").value;
       let password = document.getElementById("password").value;
 
       if(username && password) {
-        document.getElementById("message").innerText =
-          "🎉 Thanks for signing up, " + username + "!";
+        setCookie("username", username, 7); // lasts 7 days
+        setCookie("password", password, 7);
+        showWelcome(username);
       } else {
-        document.getElementById("message").innerText =
-          "⚠️ Please enter both a username and password!";
-      }
-    }
-  </script>
-</body>
-</html>
+        document.getElementById("welcome").innerText
+
